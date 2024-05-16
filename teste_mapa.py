@@ -15,8 +15,8 @@ coord = gpds.tools.geocode(end, provider = "nominatim", user_agent = "myGeocode"
 string = str(coord[0])
 separacao = string.split()
 separacao.remove(separacao[0])
-lat = (separacao[0].replace('(',''))
-lon = (separacao[1].replace(')',''))
+lat = (separacao[1].replace(')',''))
+lon = (separacao[0].replace('(',''))
 print(lat, lon)
 
 # configurações do mapa
