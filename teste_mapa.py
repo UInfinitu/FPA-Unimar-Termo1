@@ -3,11 +3,24 @@
 # pip install geopandas 
 # pip install pandas
 # pip install geopy
+#pip install mysql.connector 
 
 import folium
 import folium.plugins
 import geopandas as gpds
 import pandas as pds
+import mysql.connector
+
+
+def conectar_banco():
+    return mysql.connector.connect(
+        host='localhost', 
+        user = 'root', 
+        password = '', 
+        database = 'pins', 
+        charset = 'utf8'
+    )
+
 
 #transformando a localização
 end = input("Endereço: ") # R. Manoel Santos Chieira, 92
@@ -18,6 +31,11 @@ separacao.remove(separacao[0])
 lat = (separacao[1].replace(')',''))
 lon = (separacao[0].replace('(',''))
 print(lat, lon)
+con = conectar_banco()
+cursor = con.cursor()
+cursor.execute("insert into enderecos(rua, lat, lon)values(%s, %s, %s)",(end, lat, lon))
+con.commit()
+con.close()
 
 # configurações do mapa
 m = folium.Map(location=(-22.2127829,-49.9557924), zoom_start = 12, control_scale = True, )
