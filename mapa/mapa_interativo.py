@@ -5,6 +5,7 @@
 # pip install pandas
 # pip install geopy
 #pip install mysql.connector 
+#pip install Flask
 
 #Imports
 import folium
@@ -12,6 +13,7 @@ import folium.plugins
 import geopandas as gpds
 import pandas as pds
 import mysql.connector
+import flask
 
 #Conectando com banco de dados
 def conectar_banco():
