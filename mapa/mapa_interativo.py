@@ -1,3 +1,18 @@
+#Downloads
+
+# pip install folium
+# pip install geopandas 
+# pip install pandas
+# pip install geopy
+#pip install mysql.connector 
+
+#Imports
+import folium
+import folium.plugins
+import geopandas as gpds
+import pandas as pds
+import mysql.connector
+
 #Conectando com banco de dados
 def conectar_banco():
     return mysql.connector.connect(
@@ -7,7 +22,6 @@ def conectar_banco():
         database = 'pins', 
         charset = 'utf8'
     )
-
 
 #Pegando a localização
 end = input("Endereço: ") # R. Manoel Santos Chieira, 92
@@ -29,7 +43,7 @@ m = folium.Map(location=(-22.2127829,-49.9557924), zoom_start = 12, control_scal
 folium.plugins.Geocoder().add_to(m)
 folium.plugins.Fullscreen(position="topright", title="Expand me", title_cancel="Exit me", force_separate_button=True, ).add_to(m)
 
-# Marcadore
+# Marcador
 folium.Marker(location = [lat, lon]).add_to(m)
 
 # Rodando
