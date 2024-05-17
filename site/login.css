@@ -1,0 +1,27 @@
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#cabecalho{
+    background-color: grey;
+    padding: 8px;
+}
+
+#logo{
+    width: 5em;
+}
+
+#login{
+    box-shadow: #000 6px 6px 16px;
+    width: 35%;
+    padding: 16px;
+    border-radius: 16px;
+    font-size: large;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
