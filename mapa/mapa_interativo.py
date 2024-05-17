@@ -13,7 +13,6 @@ import folium.plugins
 import geopandas as gpds
 import pandas as pds
 import mysql.connector
-import flask
 
 #Conectando com banco de dados
 def conectar_banco():
