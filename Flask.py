@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 #iniciando
 app = Flask(__name__)
@@ -6,7 +6,8 @@ app = Flask(__name__)
 #rotas
 @app.route('/')
 def login():
-    return 
+    return render_template("login.html") 
 
 #execução
-app.run(debug = True)
+if __name__ == "__main__":
+    app.run(debug = True)
