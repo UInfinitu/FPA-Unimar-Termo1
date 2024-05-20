@@ -11,8 +11,8 @@
 import folium
 import folium.plugins
 import geopandas as gpds
-import pandas as pds
-import mysql.connector
+#import pandas as pds
+#import mysql.connector
 
 #Pegando a localização
 end = input("Endereço: ") # R. Manoel Santos Chieira, 92
