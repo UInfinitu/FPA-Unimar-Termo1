@@ -4,15 +4,14 @@
 # pip install geopandas 
 # pip install pandas
 # pip install geopy
-#pip install mysql.connector 
 #pip install Flask
+#pip install pyscript
 
 #Imports
 import folium
 import folium.plugins
 import geopandas as gpds
-#import pandas as pds
-#import mysql.connector
+import pandas as pds
 
 #Pegando a localização
 end = input("Endereço: ") # R. Manoel Santos Chieira, 92
