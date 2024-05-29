@@ -14,7 +14,7 @@ body{
     width: 5em;
 }
 
-#login{
+#cadastro{
     width: 13em;
     height: 16em;
     box-shadow: #000 6px 6px 16px;
@@ -24,7 +24,7 @@ body{
     background-color: white;
 }
 
-#ContainerLogin{
+#ContainerCad{
     height: 47em;
     display: flex;
     justify-content: center;
@@ -61,28 +61,12 @@ body{
     align-items: end;
 }
 
-#txtLogin{
+#txtCad{
     padding-left: 10px;
 }
 
-#titleLogin{
+#titleCad{
     font-size: larger;
     font-weight: bolder;
     padding: 105px;
-}
-
-#reg{
-    display: flex;
-    justify-content: right;
-    font-size: medium;
-    padding: 14px 10px;
-}
-
-#linkReg{
-    color: #38454d;
-    text-decoration: none;
-}
-
-#linkReg:hover{
-    color: #000;
 }
