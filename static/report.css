@@ -70,3 +70,15 @@ body{
     font-weight: bolder;
     padding: 130px;
 }
+
+#situacao{
+    width: 75%;
+    height: 15%;
+    font-size: x-large;
+}
+
+#escolhaFoto{
+    width: 95%;
+    height: 15%;
+    font-size: medium;
+}
