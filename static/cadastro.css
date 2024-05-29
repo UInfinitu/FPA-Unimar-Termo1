@@ -22,6 +22,7 @@ body{
     border-radius: 16px;
     font-size: xx-large;
     background-color: white;
+    text-align: center;
 }
 
 #ContainerCad{
@@ -63,10 +64,10 @@ body{
 
 #txtCad{
     padding-left: 10px;
+    text-align: left;
 }
 
 #titleCad{
     font-size: larger;
     font-weight: bolder;
-    padding: 105px;
 }
