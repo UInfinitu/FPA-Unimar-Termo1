@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Report</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='report.css') }}">
-    <link rel="shortcut icon" href="static/favicon.png" type="static/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="imgs/x-icon">
 </head>
 <body>
     <header id="cabecalho">
         <a href="https://www.dsin.com.br/" target="_blank"><img src="static/logo.png" alt="" id="logo"></a>
     </header>
     <main>
-        <section id="login">
-            <form action="">
-                <label for="">REPORT:</label>
+        <section id="ContainerReport">
+            <form action="" id="report">
+                <label for="" id="titleReport">REPORT</label>
                 <br><br>
-                <label for="">Endereço:</label>
-                <br>
-                <input type="text">
+                <div id="txtReport">
+                    <label for="end">Endereço:</label>
+                    <br>
+                    <input type="text" id="escreva" name="end">
+                    <br><br>
+                    <label for="situacao">Situação:</label>
+                    <br>
+                    <select name="situacao" id="situacao">
+                        <option value="bur">Buraco</option>
+                        <option value="sem">Semáforo</option>
+                        <option value="vaz">Vazamento</option>
+                        <option value="obs">Obstrução</option>
+                    </select>
+                    <br><br>
+                    <label for="foto">Foto:</label>
+                    <br>
+                    <input type="image" name="foto">
+                </div>
                 <br><br>
-                <label for="">Situação:</label>
-                <br>
-                <input type="text">
-                <br><br>
-                <label for="">Foto:</label>
-                <br>
-                <input type="text">
-                <br><br>
-                <a href="login.html"><button>Confirmar</a></button>
+                <div id="btn">
+                    <a href="report.html"><button id="btnConf">Confirmar</button></a>
+                </div>
             </form>
         </section>
     </main>
