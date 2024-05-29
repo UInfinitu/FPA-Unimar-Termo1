@@ -22,6 +22,7 @@ body{
     border-radius: 16px;
     font-size: xx-large;
     background-color: white;
+    text-align: center;
 }
 
 #ContainerReport{
@@ -63,12 +64,12 @@ body{
 
 #txtReport{
     padding-left: 10px;
+    text-align: left;
 }
 
 #titleReport{
     font-size: larger;
     font-weight: bolder;
-    padding: 130px;
 }
 
 #situacao{

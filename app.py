@@ -22,7 +22,7 @@ def cadastro():
 def report():
     return render_template("report.html")
 
-@app.route('/login', methods = ["POST"])
+@app.route('/report', methods = ["POST"])
 def verificaLogin():
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")

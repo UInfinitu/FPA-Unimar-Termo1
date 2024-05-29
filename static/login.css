@@ -22,6 +22,7 @@ body{
     border-radius: 16px;
     font-size: xx-large;
     background-color: white;
+    text-align: center;
 }
 
 #ContainerLogin{
@@ -63,12 +64,12 @@ body{
 
 #txtLogin{
     padding-left: 10px;
+    text-align: left;
 }
 
 #titleLogin{
     font-size: larger;
     font-weight: bolder;
-    padding: 150px;
 }
 
 #reg{
