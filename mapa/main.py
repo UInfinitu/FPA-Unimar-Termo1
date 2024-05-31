@@ -6,6 +6,7 @@
 # pip install geopy
 #pip install Flask
 #pip install pyscript
+#pip install pyinstaller
 
 #Imports
 import folium
