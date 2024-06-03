@@ -24,9 +24,9 @@ def login():
 def login_():
     return render_template("login.html") 
 
-@app.route('/mapa_teste.html')
+@app.route('/mapa.html')
 def main():
-    return render_template("mapa_teste.html")
+    return render_template("mapa.html")
 
 @app.route('/cadastro.html')
 def cadastro():
@@ -65,7 +65,7 @@ def criaConta():
     else:
         return redirect("/cadastro.html")
 
-@app.route('/mapa.html')
+@app.route('/toMap', methods = ["POST"])
 def mapa():
     import folium
     import folium.plugins
@@ -73,7 +73,7 @@ def mapa():
     import pandas as pds
 
     #Pegando a localização
-    end = input("Endereço: ") # R. Manoel Santos Chieira, 92
+    end = request.form.get("end") # R. Manoel Santos Chieira, 92
     coord = gpds.tools.geocode(end, provider = "nominatim", user_agent = "myGeocode")["geometry"]  # só funciona na janela interativa
     string = str(coord[0])
     separacao = string.split()
@@ -91,8 +91,8 @@ def mapa():
     folium.Marker(location = [lat, lon]).add_to(m)
 
     # Rodando
-    m.save("templates/mapa_teste.html")
-    return redirect("mapa_teste.html")
+    m.save("templates/mapa.html")
+    return redirect("mapa.html")
 
 #execução
 if __name__ == "__main__":
