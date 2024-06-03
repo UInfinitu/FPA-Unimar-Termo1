@@ -14,6 +14,10 @@ def login():
 def login_():
     return render_template("login.html") 
 
+@app.route('/mapa_teste.html')
+def main():
+    return render_template("mapa_teste.html")
+
 @app.route('/cadastro.html')
 def cadastro():
     return render_template("cadastro.html") 
@@ -52,7 +56,7 @@ def criaConta():
         return redirect("/cadastro.html")
 
 @app.route('/mapa.html')
-def cadastro():
+def mapa():
     import folium
     import folium.plugins
     import geopandas as gpds
@@ -77,8 +81,8 @@ def cadastro():
     folium.Marker(location = [lat, lon]).add_to(m)
 
     # Rodando
-    m
-    return render_template("mapa.html")
+    m.save("templates/mapa_teste.html")
+    return redirect("mapa_teste.html")
 
 #execução
 if __name__ == "__main__":
