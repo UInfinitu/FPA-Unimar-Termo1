@@ -4,9 +4,9 @@
 # pip install geopandas 
 # pip install pandas
 # pip install geopy
-#pip install Flask
-#pip install pyscript
-#pip install pyinstaller
+# pip install Flask
+# pip install pyscript
+# pip install pyinstaller
 
 #Imports
 import folium
