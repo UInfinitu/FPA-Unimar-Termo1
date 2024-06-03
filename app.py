@@ -1,3 +1,13 @@
+#Downloads
+
+# pip install folium
+# pip install geopandas 
+# pip install pandas
+# pip install geopy
+# pip install Flask
+# pip install pyscript
+# pip install pyinstaller
+
 from flask import Flask, render_template, redirect, request, flash
 import json
 
