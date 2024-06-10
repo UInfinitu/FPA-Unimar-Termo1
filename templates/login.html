@@ -16,6 +16,14 @@
             <form action="report" id="login" method="post">
                 <label for="" id="titleLogin">LOGIN</label>
                 <br><br>
+                {% set mensagens = get_flashed_messages() %}
+                    {% if mensagens %}
+                        <div id="msgErro">
+                            {% for msg in mensagens %}
+                                {{ msg }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 <div id="txtLogin">
                     <label for="usuario">Usuário:</label>
                     <br>

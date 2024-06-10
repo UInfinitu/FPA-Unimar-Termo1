@@ -71,3 +71,9 @@ body{
     font-size: larger;
     font-weight: bolder;
 }
+
+#msgErro{
+    font-size: large;
+    color: red;
+    font-weight: 600;
+}
