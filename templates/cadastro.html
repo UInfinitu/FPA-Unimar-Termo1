@@ -16,6 +16,14 @@
             <form action="cadastro" id="cadastro" method="post">
                 <label for="" id="titleCad">CADASTRO</label>
                 <br><br>
+                {% set mensagens = get_flashed_messages() %}
+                    {% if mensagens %}
+                        <div id="msgErro">
+                            {% for msg in mensagens %}
+                                {{ msg }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 <div id="txtCad">
                     <label for="usuario">Usuário:</label>
                     <br>

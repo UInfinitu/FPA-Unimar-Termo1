@@ -87,3 +87,17 @@ body{
 #linkReg:hover{
     color: #000;
 }
+
+input:invalid{
+    border: 4px 4px red;
+}
+
+input:valid{
+    border: 4px 4px green;
+}
+
+#msgErro{
+    font-size: large;
+    color: red;
+    font-weight: 600;
+}

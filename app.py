@@ -8,7 +8,7 @@
 # pip install pyscript
 # pip install pyinstaller
 
-from flask import Flask, render_template, redirect, request, flash
+from flask import Flask, render_template, redirect, request, flash, url_for
 import json
 
 #iniciando
@@ -19,10 +19,6 @@ app.config['SECRET_KEY'] = "batatamuitofrita"
 @app.route('/', methods = ["POST", "GET"])
 def login():
     return render_template("login.html")
-
-@app.route('/login.html')
-def login_():
-    return render_template("login.html") 
 
 @app.route('/mapa.html')
 def main():
@@ -44,10 +40,10 @@ def verificaLogin():
         lista = json.load(usuarios)
         for c in lista:
             if usuario_login == c['nome'] and senha_login == c['senha']:
-                return render_template("/report.html")
+                return redirect(url_for("report"))
         else:
-            flash('Usuário Inválido')
-            return redirect("/login.html")
+            flash("Usuário Inválido")
+            return redirect(url_for("login"))
             
 @app.route('/cadastro', methods = ["POST"])
 def criaConta():
@@ -56,14 +52,19 @@ def criaConta():
     confSenha = request.form.get("confSenha")
     if senha == confSenha:
         with open('usuarios.json', 'r+') as f:
-           data = json.load(f)
-           data.append({"nome": usuario, "senha": senha})
-           f.seek(0)
-           json.dump(data, f, indent=4)
-           f.truncate()
-        return render_template("/report.html")
+            data = json.load(f)
+            for c in data:
+                if usuario == c['nome']:
+                    flash("Nome de usuário já existe!")
+                    return redirect(url_for("cadastro"))
+            data.append({"nome": usuario, "senha": senha})
+            f.seek(0)
+            json.dump(data, f, indent=4)
+            f.truncate()
+        return redirect(url_for("report"))
     else:
-        return redirect("/cadastro.html")
+        flash("Senha e confirmação diferentes!")
+        return redirect(url_for("cadastro"))
 
 @app.route('/toMap', methods = ["POST"])
 def mapa():
@@ -73,7 +74,8 @@ def mapa():
     import pandas as pds
 
     #Pegando a localização
-    end = request.form.get("end")# R. Manoel Santos Chieira, 92
+    end = request.form.get("end") # R. Manoel Santos Chieira, 92
+    corPin = request.form["situacao"]
     coord = gpds.tools.geocode(end, provider = "nominatim", user_agent = "myGeocode")["geometry"]  # só funciona na janela interativa
     string = str(coord[0])
     separacao = string.split()
@@ -83,7 +85,7 @@ def mapa():
     
     with open('localiza.json', 'r+') as f:
        data = json.load(f)
-       data.append({"lat": lat, "lon": lon})
+       data.append({"lat": lat, "lon": lon, "sit": corPin})
        f.seek(0)
        json.dump(data, f, indent=4)
        f.truncate()
@@ -96,12 +98,37 @@ def mapa():
     # Marcador
     with open('localiza.json', 'r') as localiza:
         lista = json.load(localiza)
-        for c in lista:
-            folium.Marker(location = [c['lat'], c['lon']]).add_to(m)
 
+    for c in lista:
+        corPin = c["sit"]
+        if corPin == "bur":
+            folium.Marker(location = [c['lat'], c['lon']], icon=folium.Icon(color='red')).add_to(m)
+        elif corPin == "sem":
+            folium.Marker(location = [c['lat'], c['lon']], icon=folium.Icon(color='blue')).add_to(m)
+        elif corPin == "vaz":
+            folium.Marker(location = [c['lat'], c['lon']], icon=folium.Icon(color='green')).add_to(m)
+        else:
+            folium.Marker(location = [c['lat'], c['lon']], icon=folium.Icon(color='black')).add_to(m)
+
+    # Legenda
+    legend_html = '''
+     <div style="position: fixed; 
+     bottom: 5px; left: 5px; width: 200px; height: 200px; 
+     border: 2px solid grey; z-index: 9999; font-size: 18px;
+     background-color: white; text-align: center; padding: 10px;
+     border-radius: 6px;
+     ">&nbsp; <b style="font-size: 22px">Legenda</b> <br>
+     &nbsp; Buraco &nbsp; <i class="fa fa-map-marker fa-2x" style="color:#d53e2a"></i><br>
+     &nbsp; Semáforo &nbsp; <i class="fa fa-map-marker fa-2x" style="color:#36a3d3"></i><br>
+     &nbsp; Vazamento &nbsp; <i class="fa fa-map-marker fa-2x" style="color:#6eaa25"></i><br>
+     &nbsp; Obstrução &nbsp; <i class="fa fa-map-marker fa-2x" style="color:#2e2e2e"></i><br>
+      </div>
+     '''
+    m.get_root().html.add_child(folium.Element(legend_html))
+    
     # Rodando
     m.save("templates/mapa.html")
-    return redirect("mapa.html")
+    return redirect(url_for("main"))
 
 #execução
 if __name__ == "__main__":
